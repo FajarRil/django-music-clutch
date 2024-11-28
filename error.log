@@ -224,3 +224,87 @@ Traceback (most recent call last):
   File "c:\Users\jossf\anaconda3\Lib\site-packages\django\http\request.py", line 151, in get_host
     raise DisallowedHost(msg)
 django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Error extracting lyrics from audio: Audio file could not be read as PCM WAV, AIFF/AIFF-C, or Native FLAC; check if file is corrupted or in another format
+Error extracting lyrics from audio: Audio file could not be read as PCM WAV, AIFF/AIFF-C, or Native FLAC; check if file is corrupted or in another format
+Error extracting lyrics from audio: Audio file could not be read as PCM WAV, AIFF/AIFF-C, or Native FLAC; check if file is corrupted or in another format
+Search API error: 'AIMusicalFingerprintEngine' object has no attribute 'prepare_text_features'
+Internal Server Error: /api/search/
+"POST /api/search/ HTTP/1.1" 500 52
+Search API error: 'AIMusicalFingerprintEngine' object has no attribute 'clean_text'
+Internal Server Error: /api/search/
+"POST /api/search/ HTTP/1.1" 500 52
+Fingerprint generation error: 'AIMusicalFingerprintEngine' object has no attribute 'generate_audio_fingerprint'
+Fingerprint generation error: 'AIMusicalFingerprintEngine' object has no attribute 'generate_audio_fingerprint'
+Fingerprint generation error: 'AIMusicalFingerprintEngine' object has no attribute 'generate_audio_fingerprint'
+Song matching error: 'AIMusicalFingerprintEngine' object has no attribute 'generate_audio_fingerprint'
+Fingerprint generation error: 'AIMusicalFingerprintEngine' object has no attribute 'generate_audio_fingerprint'
+Fingerprint generation error: 'AIMusicalFingerprintEngine' object has no attribute 'generate_audio_fingerprint'
+Fingerprint generation error: 'AIMusicalFingerprintEngine' object has no attribute 'generate_audio_fingerprint'
+Song matching error: 'AIMusicalFingerprintEngine' object has no attribute 'generate_audio_fingerprint'
+Fingerprint generation error: 'AIMusicalFingerprintEngine' object has no attribute 'generate_audio_fingerprint'
+Fingerprint generation error: 'AIMusicalFingerprintEngine' object has no attribute 'generate_audio_fingerprint'
+Fingerprint generation error: 'AIMusicalFingerprintEngine' object has no attribute 'generate_audio_fingerprint'
+Song matching error: 'AIMusicalFingerprintEngine' object has no attribute 'generate_audio_fingerprint'
+Song matching error: 'AIMusicalFingerprintEngine' object has no attribute 'calculate_word_similarity'
+Search API error: [WinError 145] The directory is not empty: 'C:\\Users\\jossf\\AppData\\Local\\Temp\\tmp3onb7gqh'
+Internal Server Error: /api/search/
+Song matching error: 'AIMusicalFingerprintEngine' object has no attribute 'calculate_word_similarity'
+Search API error: [WinError 145] The directory is not empty: 'C:\\Users\\jossf\\AppData\\Local\\Temp\\tmpo3wafys4'
+Internal Server Error: /api/search/
+Feature preparation error: 'AIMusicalFingerprintEngine' object has no attribute '_clean_text'
+Song matching error: type object 'AudioSimilarityEngine' has no attribute 'generate_fingerprint'
+Search API error: 'AIMusicalFingerprintEngine' object has no attribute '_no_match_result'
+Internal Server Error: /api/search/
+"POST /api/search/ HTTP/1.1" 500 52
+Feature preparation error: TextSimilarityEngine.clean_text() missing 1 required positional argument: 'text'
+Song matching error: AudioSimilarityEngine.generate_audio_fingerprint() missing 1 required positional argument: 'audio_path'
+Feature preparation error: TextSimilarityEngine.clean_text() missing 1 required positional argument: 'text'
+Song matching error: AudioSimilarityEngine.generate_audio_fingerprint() missing 1 required positional argument: 'audio_path'
+Feature preparation error: TextSimilarityEngine.clean_text() missing 1 required positional argument: 'text'
+Song matching error: type object 'MusicSimilarityEngine' has no attribute 'extract_features'
+Search API error: [WinError 145] The directory is not empty: 'C:\\Users\\jossf\\AppData\\Local\\Temp\\tmp99j5pex2'
+Internal Server Error: /api/search/
+"POST /api/search/ HTTP/1.1" 500 52
+Fingerprint generation error: 'AIMusicalFingerprintEngine' object has no attribute '_download_audio'
+Fingerprint generation error: 'AIMusicalFingerprintEngine' object has no attribute '_download_audio'
+Fingerprint generation error: 'AIMusicalFingerprintEngine' object has no attribute '_download_audio'
+Song matching error: type object 'MusicSimilarityEngine' has no attribute 'extract_features'
+Search API error: Unsupported media type "application/octet-stream" in request.
+Internal Server Error: /api/search/
+"POST /api/search/ HTTP/1.1" 500 52
+Search API error: Unsupported media type "application/octet-stream" in request.
+Internal Server Error: /api/search/
+"POST /api/search/ HTTP/1.1" 500 52
+Search API error: Unsupported media type "application/octet-stream" in request.
+Internal Server Error: /api/search/
+"POST /api/search/ HTTP/1.1" 500 52
+Search API error: Unsupported media type "application/octet-stream" in request.
+Internal Server Error: /api/search/
+"POST /api/search/ HTTP/1.1" 500 52
+Search API error: Multipart form parse error - Request max total header size exceeded.
+Internal Server Error: /api/search/
+"POST /api/search/ HTTP/1.1" 500 52
+Search API error: Multipart form parse error - Request max total header size exceeded.
+Internal Server Error: /api/search/
+"POST /api/search/ HTTP/1.1" 500 52
+Search API error: Multipart form parse error - Request max total header size exceeded.
+Internal Server Error: /api/search/
+"POST /api/search/ HTTP/1.1" 500 52
+Search API error: Multipart form parse error - Request max total header size exceeded.
+Internal Server Error: /api/search/
+"POST /api/search/ HTTP/1.1" 500 52
+Search API error: Multipart form parse error - Request max total header size exceeded.
+Internal Server Error: /api/search/
+"POST /api/search/ HTTP/1.1" 500 52
+Search API error: Multipart form parse error - Request max total header size exceeded.
+Internal Server Error: /api/search/
+"POST /api/search/ HTTP/1.1" 500 52
+Search API error: Multipart form parse error - Request max total header size exceeded.
+Internal Server Error: /api/search/
+"POST /api/search/ HTTP/1.1" 500 52
+Search API error: Multipart form parse error - Request max total header size exceeded.
+Internal Server Error: /api/search/
+"POST /api/search/ HTTP/1.1" 500 52
+Search API error: Multipart form parse error - Request max total header size exceeded.
+Internal Server Error: /api/search/
+"POST /api/search/ HTTP/1.1" 500 52
