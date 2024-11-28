@@ -57,7 +57,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'ai_music_search.wsgi.application'
 
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # CORS Configuration
 CORS_ALLOWED_ORIGINS = ["http://localhost","https://music-clutch.vercel.app","http://127.0.0.1","http://127.0.0.1:8000","http://localhost:3000","https://music-clutch-django-production.up.railway.app"]
