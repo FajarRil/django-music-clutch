@@ -20,7 +20,7 @@ class AIMusicalFingerprintEngine:
     - Hybrid song matching
     """
 
-    def __init__(self, songs, max_duration=10, sample_rate=22050):
+    def __init__(self, songs, max_duration=2, sample_rate=22050):
         """
         Initialize the musical fingerprint engine
 

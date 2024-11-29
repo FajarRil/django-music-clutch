@@ -37,7 +37,7 @@ class AudioSimilarityEngine:
             return None
 
     @staticmethod
-    def generate_fingerprint(audio_path, max_duration=10, sample_rate=22050):
+    def generate_fingerprint(audio_path, max_duration=2, sample_rate=22050):
         """
         Generate robust audio fingerprint
 
