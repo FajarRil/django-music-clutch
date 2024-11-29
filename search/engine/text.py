@@ -1,88 +1,210 @@
 import os
 import re
 import logging
+import numpy as np
+from typing import List, Dict, Optional
 import speech_recognition as sr
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
+from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer
+import nltk
+
+# Download necessary NLTK resources
+nltk.download("stopwords", quiet=True)
+nltk.download("wordnet", quiet=True)
 
 logger = logging.getLogger(__name__)
 
+
 class TextSimilarityEngine:
     """
-    Handles text-based similarity and lyrics extraction
+    Advanced text similarity engine with multi-level text processing
+
+    Features:
+    - Advanced text cleaning
+    - Audio text extraction
+    - Lemmatization
+    - Stop word removal
+    - Weighted similarity calculation
+    - Multiple similarity metrics
     """
 
-    @staticmethod
-    def clean_text(text):
+    # Precompute stop words for efficiency
+    STOP_WORDS = set(stopwords.words("english"))
+    LEMMATIZER = WordNetLemmatizer()
+
+    @classmethod
+    def clean_text(cls, text: str, advanced_cleaning: bool = True) -> str:
         """
-        Clean and normalize text input
+        Advanced text cleaning method
 
         Args:
             text (str): Input text to clean
+            advanced_cleaning (bool): Enable advanced cleaning techniques
 
         Returns:
             str: Cleaned and normalized text
         """
         if not text:
             return ""
-        text = re.sub(r"[^\w\s]", "", str(text).lower())
-        return " ".join(text.split())
 
-    @staticmethod
-    def extract_lyrics_from_audio(audio_path):
+        # Convert to lowercase and remove special characters
+        cleaned_text = re.sub(r"[^\w\s]", "", str(text).lower())
+
+        if advanced_cleaning:
+            # Tokenize
+            tokens = cleaned_text.split()
+
+            # Remove stop words and lemmatize
+            processed_tokens = [
+                cls.LEMMATIZER.lemmatize(token)
+                for token in tokens
+                if token not in cls.STOP_WORDS
+            ]
+
+            return " ".join(processed_tokens)
+
+        return " ".join(cleaned_text.split())
+
+    @classmethod
+    def extract_lyrics_from_audio(
+        cls, audio_path: str, language: str = "en-US", timeout: int = 10
+    ) -> str:
         """
-        Extract text/lyrics from audio using speech recognition
+        Advanced lyrics extraction with multiple recognition strategies
 
         Args:
             audio_path (str): Path to audio file
+            language (str): Language for speech recognition
+            timeout (int): Maximum time for recognition attempt
 
         Returns:
-            str: Extracted text or empty string
+            str: Extracted and cleaned text
         """
         if not audio_path or not os.path.exists(audio_path):
-            logger.error(f"Invalid audio path: {audio_path}")
+            logger.warning(f"Invalid audio path: {audio_path}")
             return ""
 
         try:
             recognizer = sr.Recognizer()
+
+            # Adjust for ambient noise
             with sr.AudioFile(audio_path) as source:
                 audio_data = recognizer.record(source)
-                text = recognizer.recognize_google(audio_data)
-                return TextSimilarityEngine.clean_text(text)
+                recognizer.adjust_for_ambient_noise(source, duration=1)
 
-        except Exception as e:
-            logger.error(f"Lyrics extraction error: {e}")
+            # Multiple recognition attempts with different parameters
+            recognition_strategies = [
+                lambda: recognizer.recognize_google(audio_data, language=language),
+                lambda: recognizer.recognize_sphinx(audio_data),
+                lambda: recognizer.recognize_whisper(audio_data),
+                lambda: recognizer.recognize_wit(audio_data),
+                lambda: recognizer.recognize_azure(audio_data),
+                lambda: recognizer.recognize_ibm(audio_data),
+            ]
+
+            for strategy in recognition_strategies:
+                try:
+                    text = strategy()
+                    if text:
+                        return cls.clean_text(text)
+                except Exception as e:
+                    logger.debug(f"Recognition strategy failed: {e}")
+
             return ""
 
-    @staticmethod
-    def calculate_similarity(query_words, song_words, query_audio_path=None):
+        except Exception as e:
+            logger.error(f"Comprehensive lyrics extraction error: {e}")
+            return ""
+
+    @classmethod
+    def calculate_similarity(
+        cls,
+        query_words: List[str],
+        song_words: Dict[str, set],
+        query_audio_path: Optional[str] = None,
+    ) -> float:
         """
-        Calculate similarity between words, potentially using audio text
+        Advanced similarity calculation with multiple scoring mechanisms
 
         Args:
-            query_words (list): Words from query
-            song_words (dict): Dictionary containing song words
-            query_audio_path (str, optional): Path to query audio file
+            query_words (List[str]): Words from query
+            song_words (Dict[str, set]): Dictionary containing song words
+            query_audio_path (Optional[str]): Path to query audio file
 
         Returns:
-            float: Similarity score between 0 and 1
+            float: Comprehensive similarity score between 0 and 1
         """
-        # Try audio text extraction if no query words
+        logger.debug("Starting similarity calculation")
+
+        # Extract words from audio if no query words
         if not query_words and query_audio_path:
-            audio_text = TextSimilarityEngine.extract_lyrics_from_audio(query_audio_path)
-            query_words = audio_text.split()
+            logger.info(f"Extracting lyrics from audio: {query_audio_path}")
+            audio_text = cls.extract_lyrics_from_audio(query_audio_path)
+            logger.debug(f"Extracted lyrics: {audio_text}")
+            query_words = cls.clean_text(audio_text).split()
 
-        # Prepare song words
-        song_title_words = song_words.get('title_words', set())
-        song_artist_words = song_words.get('artist_words', set())
-        song_all_words = set(song_words.get('words', []))
+        if not query_words:
+            logger.warning("No query words provided for similarity calculation")
+            return 0.0
 
-        query_set = set(query_words)
+        # Prepare song words with advanced processing
+        logger.debug("Preparing song words for comparison")
+        song_title_words = song_words.get("title_words", set())
+        song_artist_words = song_words.get("artist_words", set())
+        song_all_words = set(song_words.get("words", []))
 
-        # Calculate overlaps
-        title_overlap = len(query_set.intersection(song_title_words)) / max(len(query_set), len(song_title_words)) if song_title_words else 0
-        artist_overlap = len(query_set.intersection(song_artist_words)) / max(len(query_set), len(song_artist_words)) if song_artist_words else 0
-        word_overlap = len(query_set.intersection(song_all_words)) / max(len(query_set), len(song_all_words)) if song_all_words else 0
+        # Convert query words to set for efficient operations
+        query_set = set(song_all_words)
+        logger.debug(f"Query words: {query_set}")
 
-        # Weight different overlaps
-        return max(0.0, min(0.5 * title_overlap + 0.3 * artist_overlap + 0.2 * word_overlap, 1.0))
+        # Advanced overlap calculations with weighted semantic importance
+        def calculate_weighted_overlap(query_set, target_set, weight=1.0):
+            """Calculate weighted set overlap with semantic scoring"""
+            if not target_set:
+                return 0.0
+
+            # Jaccard similarity with weighted scoring
+            intersection = len(query_set.intersection(target_set))
+            union = len(query_set.union(target_set))
+
+            # Cosine-like similarity with weight
+            similarity = weight * (intersection / (union + 1e-10))
+            logger.debug(f"Overlap score: {similarity} (weight: {weight})")
+            return similarity
+
+        # Comprehensive similarity scoring
+        logger.debug("Calculating weighted overlaps")
+        title_overlap = calculate_weighted_overlap(
+            query_set, song_title_words, weight=0.4
+        )
+        artist_overlap = calculate_weighted_overlap(
+            query_set, song_artist_words, weight=0.3
+        )
+        word_overlap = calculate_weighted_overlap(query_set, song_all_words, weight=0.3)
+
+        # Advanced scoring with dynamic weighting
+        total_similarity = title_overlap + artist_overlap + word_overlap
+        logger.debug(f"Final similarity score: {total_similarity}")
+
+        # Normalization and clamping
+        return max(0.0, min(total_similarity, 1.0))
+
+    @staticmethod
+    def advanced_text_vectorization(texts: List[str]) -> np.ndarray:
+        """
+        Advanced text vectorization using TF-IDF with enhanced preprocessing
+
+        Args:
+            texts (List[str]): List of texts to vectorize
+
+        Returns:
+            np.ndarray: Vectorized representation of texts
+        """
+        vectorizer = TfidfVectorizer(
+            stop_words="english",
+            lowercase=True,
+            strip_accents="unicode",
+            ngram_range=(1, 2),  # Consider both unigrams and bigrams
+        )
+        return vectorizer.fit_transform(texts)

@@ -6,6 +6,7 @@ class Song(models.Model):
     title = models.CharField(max_length=200)
     artist = models.CharField(max_length=200)
     cloudinary_url = models.URLField(max_length=500)
+    path = models.CharField(max_length=500)
     lyrics = models.TextField(blank=True, null=True)
     
     def __str__(self):

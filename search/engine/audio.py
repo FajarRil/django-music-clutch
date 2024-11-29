@@ -1,7 +1,6 @@
 import logging
 import numpy as np
-import requests
-import tempfile
+import os
 import librosa
 from scipy.signal import spectrogram
 from sklearn.metrics.pairwise import cosine_similarity
@@ -14,31 +13,27 @@ class AudioSimilarityEngine:
     """
 
     @staticmethod
-    def download_audio(url):
+    def load_local_audio(file_path):
         """
-        Download audio file with robust error handling
+        Load audio file from local path
 
         Args:
-            url (str): URL of the audio file
+            file_path (str): Path to the local audio file
 
         Returns:
-            str: Path to the downloaded temporary audio file or None
+            str: Absolute path to the audio file or None
         """
-        logger.info(f"Starting download of audio from URL: {url}")
+        logger.info(f"Loading local audio from path: {file_path}")
         try:
-            with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as temp_file:
-                try:
-                    response = requests.get(url, stream=True, timeout=10)
-                    response.raise_for_status()
-                    for chunk in response.iter_content(chunk_size=8192):
-                        temp_file.write(chunk)
-                    logger.info(f"Audio downloaded successfully: {temp_file.name}")
-                    return temp_file.name
-                except requests.exceptions.RequestException as e:
-                    logger.error(f"Audio download error: {e}")
-                    return None
+            if os.path.exists(file_path):
+                abs_path = os.path.abspath(file_path)
+                logger.info(f"Audio file found at: {abs_path}")
+                return abs_path
+            else:
+                logger.error(f"Audio file not found at: {file_path}")
+                return None
         except Exception as e:
-            logger.error(f"Temporary file creation error: {e}")
+            logger.error(f"Error loading local audio: {e}")
             return None
 
     @staticmethod

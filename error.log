@@ -308,3 +308,39 @@ Internal Server Error: /api/search/
 Search API error: Multipart form parse error - Request max total header size exceeded.
 Internal Server Error: /api/search/
 "POST /api/search/ HTTP/1.1" 500 52
+Fingerprint generation error: type object 'AudioSimilarityEngine' has no attribute 'download_audio'
+Fingerprint generation error: type object 'AudioSimilarityEngine' has no attribute 'download_audio'
+Fingerprint generation error: type object 'AudioSimilarityEngine' has no attribute 'download_audio'
+Fingerprint generation error: type object 'AudioSimilarityEngine' has no attribute 'download_audio'
+Fingerprint generation error: type object 'AudioSimilarityEngine' has no attribute 'download_audio'
+Fingerprint generation error: type object 'AudioSimilarityEngine' has no attribute 'download_audio'
+Audio file not found at: https://res.cloudinary.com/dutlw7bko/video/upload/v1732767187/music-clutch/golden_hour_jao7gd.mp3
+Audio file not found at: https://res.cloudinary.com/dutlw7bko/video/upload/v1732767181/music-clutch/sadrah_jkytcl.mp3
+Audio file not found at: https://res.cloudinary.com/dutlw7bko/video/upload/v1732767181/music-clutch/die_with_a_smile_hg9tbz.mp3
+Audio file not found at: https://res.cloudinary.com/dutlw7bko/video/upload/v1732767187/music-clutch/golden_hour_jao7gd.mp3
+Audio file not found at: https://res.cloudinary.com/dutlw7bko/video/upload/v1732767181/music-clutch/sadrah_jkytcl.mp3
+Audio file not found at: https://res.cloudinary.com/dutlw7bko/video/upload/v1732767181/music-clutch/die_with_a_smile_hg9tbz.mp3
+Audio file not found at: https://res.cloudinary.com/dutlw7bko/video/upload/v1732767187/music-clutch/golden_hour_jao7gd.mp3
+Audio file not found at: https://res.cloudinary.com/dutlw7bko/video/upload/v1732767181/music-clutch/sadrah_jkytcl.mp3
+Audio file not found at: https://res.cloudinary.com/dutlw7bko/video/upload/v1732767181/music-clutch/die_with_a_smile_hg9tbz.mp3
+Audio file not found at: https://res.cloudinary.com/dutlw7bko/video/upload/v1732767187/music-clutch/golden_hour_jao7gd.mp3
+Audio file not found at: https://res.cloudinary.com/dutlw7bko/video/upload/v1732767181/music-clutch/sadrah_jkytcl.mp3
+Audio file not found at: https://res.cloudinary.com/dutlw7bko/video/upload/v1732767181/music-clutch/die_with_a_smile_hg9tbz.mp3
+Audio file not found at: ../music/golden_hour.mp3
+Audio file not found at: ../music/sadrah.mp3
+Audio file not found at: ../music/die_with_a_smile.mp3
+Audio file not found at: music/golden_hour.mp3
+Audio file not found at: music/sadrah.mp3
+Audio file not found at: music/die_with_a_smile.mp3
+Audio file not found at: music/golden_hour.mp3
+Audio file not found at: music/sadrah.mp3
+Audio file not found at: music/die_with_a_smile.mp3
+Audio file not found at: music/golden_hour.mp3
+Audio file not found at: music/sadrah.mp3
+Audio file not found at: music/die_with_a_smile.mp3
+Audio file not found at: music/golden_hour.mp3
+Audio file not found at: music/sadrah.mp3
+Audio file not found at: music/die_with_a_smile.mp3
+Audio file not found: music/golden_hour.mp3
+Audio file not found: music/sadrah.mp3
+Audio file not found: music/die_with_a_smile.mp3
